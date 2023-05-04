@@ -51,7 +51,6 @@ app.patch("/user/task/delete", (req, res) => {
       console.log(err);
     });
 });
-module.exports = app;
 
 app.patch("/user/task/add", (req, res) => {
   const data = req.body;
@@ -97,3 +96,5 @@ app.post("/user/signup", (req, res) => {
     }
   });
 });
+
+module.exports = app;
