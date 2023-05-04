@@ -6,5 +6,5 @@ const port = 8000;
 // ip = "https://todolistapi-ssi0.onrender.com";
 
 app.listen(port, () => {
-  console.log(`Server running at http://${ip}:${port}/`);
+  console.log(`Server running at ${port}/`);
 });
