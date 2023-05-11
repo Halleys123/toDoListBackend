@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 const app = express();
+app.use(cors());
 
 mongoose
   .connect(
@@ -12,13 +13,12 @@ mongoose
     console.log("Connected to database");
   })
   .catch((err) => {
-    console.log(err);
+    console.log(err.message);
   });
 
 const model = require("./model/model");
 
 app.use(express.json());
-app.use(cors());
 
 app.post("/user/login", (req, res) => {
   console.log(req.body);
