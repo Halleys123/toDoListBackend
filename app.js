@@ -22,7 +22,10 @@ app.use(express.json());
 
 app.post("/user/login", (req, res) => {
   console.log(req.body);
-  model.findOne(req.body).then((user) => {
+  const user = req.body.username;
+  const pass = req.body.password;
+
+  model.findOne({ username: user, password: pass }).then((user) => {
     if (user) {
       console.log("Logged in");
       res.json({ status: "success", data: user });
