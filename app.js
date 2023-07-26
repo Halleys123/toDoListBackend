@@ -21,26 +21,18 @@ const model = require("./model/model");
 app.use(express.json());
 
 app.post("/user/login", (req, res) => {
-  console.log(req.body);
   const user = req.body.username;
   const pass = req.body.password;
-
-  model.findOne({ username: user, password: pass }).then((user) => {
+  const data = { username: user, password: pass };
+  model.findOne(data).then((user) => {
     if (user) {
-      console.log("Logged in");
       res.json({ status: "success", data: user });
     } else {
-      console.log("Wrong username or password");
       res.json({ status: "fail" });
     }
   });
 });
 app.patch("/user/task/delete", (req, res) => {
-  // console.log(req.body);
-  // const data = await model.find({ username: req.body.username });
-  // const data1 = data.json();
-  // console.log("ief" + data);
-  // console.log(data1);
   model
     .updateOne(
       { username: req.body.username },
@@ -57,7 +49,6 @@ app.patch("/user/task/delete", (req, res) => {
 
 app.patch("/user/task/add", (req, res) => {
   const data = req.body;
-  console.log(data);
   model
     .updateOne(
       { username: req.body.username },
@@ -77,7 +68,6 @@ app.patch("/user/task/add", (req, res) => {
 app.post("/user/signup", (req, res) => {
   const data = req.body;
   data.toDoList = [];
-  console.log(data);
 
   model.findOne({ username: data.username }).then((user) => {
     if (user) {
